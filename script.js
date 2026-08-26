@@ -8,27 +8,46 @@ const scienceAmpsSource = 'https://www.scienceamps.com/irs.html';
 const pandaSource = 'https://panda-sound.com/product/panda-cabs-free-pack/';
 const worshipSource = 'https://worshiptutorials.com/product/acoustic-ir-sample-pack/';
 const acousticIrSource = 'https://www.acousticir.ovh/';
+const originEffectsSource = 'https://origineffects.com/product/ir-cab-library/';
+const line6AllureSource = 'https://line6.com/allure/';
+const redwirezSource = 'https://redwirez.com/pages/the-marshall-1960a-ir-pack';
+const mlSoundLabSource = 'https://ml-sound-lab.com/pages/free-premium-ir';
+const forwardAudioSource = 'https://www.forward-audio.com/downloads';
+const darwinsCatSource = 'https://darwinscat.com/sound-utils/cabinet-ir-utility';
+const ggwpBassSource = 'https://ggwptech.com/free-bass-cab-impulse-response-library';
 
 const brandVisuals = {
   Aguilar: ['brand-aguilar', 'Aguilar'],
   Ampeg: ['brand-ampeg', 'Ampeg'],
+  Bogner: ['brand-bogner', 'Bogner'],
   Celestion: ['brand-celestion', 'Celestion'],
   Diezel: ['brand-diezel', 'Diezel'],
   Eden: ['brand-eden', 'Eden'],
   ENGL: ['brand-engl', 'ENGL'],
   Fender: ['brand-fender', 'Fender'],
+  Friedman: ['brand-friedman', 'Friedman'],
+  'Gallien-Krueger': ['brand-gk', 'Gallien-Krueger'],
+  Gibson: ['brand-acoustic', 'Gibson'],
+  Hartke: ['brand-hartke', 'Hartke'],
   Guild: ['brand-acoustic', 'Guild'],
   Hiwatt: ['brand-hiwatt', 'Hiwatt'],
+  'Line 6': ['brand-line6', 'Line 6'],
+  Magnatone: ['brand-magnatone', 'Magnatone'],
+  Markbass: ['brand-markbass', 'Markbass'],
   Marshall: ['brand-marshall', 'Marshall'],
   Martin: ['brand-acoustic', 'Martin'],
+  Matchless: ['brand-matchless', 'Matchless'],
   McPherson: ['brand-acoustic', 'McPherson'],
   'Mesa Boogie': ['brand-mesa', 'Mesa Boogie'],
   Orange: ['brand-orange', 'Orange'],
   Peavey: ['brand-peavey', 'Peavey'],
   'Science Amps': ['brand-science', 'Science'],
+  Silvertone: ['brand-silvertone', 'Silvertone'],
+  Supro: ['brand-supro', 'Supro'],
   Taylor: ['brand-acoustic', 'Taylor'],
   'Trace Elliot': ['brand-trace', 'Trace Elliot'],
   Vox: ['brand-vox', 'Vox'],
+  Yamaha: ['brand-acoustic', 'Yamaha'],
 };
 
 const fenderNames = [
@@ -140,6 +159,116 @@ const sourcePacks = [
       ['Taylor', '414ce Acoustic Body', 'Grand Auditorium acoustic body', 'Acoustic guitar resonance', ['Barbera', 'Fishman', 'Piezo'], [44100, 48000]],
       ['Martin', 'OM Acoustic Body', 'Orchestra Model acoustic body', 'Acoustic guitar resonance', ['Piezo', 'Soundboard'], [44100, 48000]],
       ['Guild', 'Dreadnought Acoustic Body', 'Dreadnought acoustic body', 'Acoustic guitar resonance', ['Piezo', 'Magnetic'], [44100, 48000]],
+    ],
+  },
+  {
+    source: originEffectsSource,
+    pack: 'Origin Effects IR Cab Library',
+    license: 'Free vintage cabinet library from Origin Effects. Source page lists 163 WAV files, 24-bit, 44.1/48/96 kHz.',
+    imageUrl: './images/fender-twin-reverb.jpg',
+    entries: [
+      ['Fender', 'Brown Deluxe 1x12', 'Fender Brown Deluxe combo', 'Oxford / Jensen style 12"', ['SM57', 'R121', 'Room'], [44100, 48000, 96000]],
+      ['Fender', 'Black Panel 2x12', 'American open-back 2x12', 'Jensen C12N style', ['SM57', 'Condenser', 'Mix'], [44100, 48000, 96000]],
+      ['Fender', 'Tweed 4x10', 'American tweed 4x10', 'Jensen P10R style', ['SM57', 'Ribbon', 'Mix'], [44100, 48000, 96000]],
+      ['Marshall', 'Plexi 4x12', 'British basketweave 4x12', 'Celestion Greenback', ['SM57', 'R121', 'Mix'], [44100, 48000, 96000]],
+      ['Marshall', 'Bluesbreaker 2x12', 'British open-back 2x12', 'Celestion Alnico', ['SM57', 'Ribbon', 'Room'], [44100, 48000, 96000]],
+      ['Vox', 'AC30 Alnico 2x12', 'Vox open-back 2x12', 'Celestion Blue', ['SM57', 'R121', 'Room'], [44100, 48000, 96000]],
+      ['Magnatone', '213 Troubadour 1x12', 'Magnatone combo cab', 'Oxford style 12"', ['SM57', 'Condenser', 'Room'], [44100, 48000, 96000]],
+      ['Supro', 'Thunderbolt 1x15', 'Vintage 1x15 combo', 'Jensen style 15"', ['SM57', 'Ribbon'], [44100, 48000, 96000]],
+      ['Silvertone', 'Twin Twelve 2x12', 'Vintage 2x12 combo', 'Jensen style pair', ['SM57', 'Condenser'], [44100, 48000, 96000]],
+    ],
+  },
+  {
+    source: line6AllureSource,
+    pack: 'Line 6 Allure Free IR Pack',
+    license: 'Free Allure IR pack from Line 6 via signup. Use official source link.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Fender', '59 Tweed P10N', 'Tweed 4x10 style cab', 'Jensen P10N style', ['Allure Dynamic'], [48000]],
+      ['Vox', '64 A30 G12', 'Vox AC30 style 2x12', 'Celestion G12 style', ['Allure Dynamic'], [48000]],
+      ['Fender', '64 US Deluxe P12N', 'Deluxe Reverb style 1x12', 'Jensen P12N style', ['Allure Dynamic'], [48000]],
+      ['Marshall', '67 Brit Greenback', 'British 4x12 style cab', 'Celestion Greenback', ['Allure Dynamic'], [48000]],
+      ['Hiwatt', '70s WhoWatt 100', 'Hiwatt 4x12 style cab', 'Fane style speaker', ['Allure Dynamic'], [48000]],
+      ['Mesa Boogie', '90s Cali V30', 'California 4x12 style cab', 'Celestion Vintage 30', ['Allure Dynamic'], [48000]],
+    ],
+  },
+  {
+    source: redwirezSource,
+    pack: 'Redwirez Free Marshall 1960A IRs',
+    license: 'Free Redwirez Marshall 1960 sample pack via newsletter signup. Use official source link.',
+    imageUrl: './images/marshall-1960ax.jpg',
+    entries: [
+      ['Marshall', '1960A G12M25 Cap', 'Marshall 1960A 4x12', 'Celestion G12M Greenback', ['SM57 cap', 'MD421 cap', 'R121 cap', 'U87 cap'], [44100, 48000, 96000]],
+      ['Marshall', '1960A G12M25 Cap Edge', 'Marshall 1960A 4x12', 'Celestion G12M Greenback', ['SM57 cap edge', 'MD421 cap edge', 'R121 cap edge'], [44100, 48000, 96000]],
+      ['Marshall', '1960A G12M25 Cone', 'Marshall 1960A 4x12', 'Celestion G12M Greenback', ['SM57 cone', 'MD421 cone', 'R121 cone'], [44100, 48000, 96000]],
+      ['Marshall', '1960A G12M25 Room', 'Marshall 1960A 4x12', 'Celestion G12M Greenback', ['Room', 'Ambient', 'Mix'], [44100, 48000, 96000]],
+    ],
+  },
+  {
+    source: mlSoundLabSource,
+    pack: 'ML Sound Lab Free Premium IR',
+    license: 'Free ML Sound Lab sample IR. Source page lists Mesa Traditional 4x12, 48 kHz, 24-bit, 200 ms.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Mesa Boogie', 'Traditional 4x12 Color Calibrated', 'Mesa Boogie Traditional 4x12', 'Celestion Vintage 30', ['SM57 + R121'], [48000]],
+      ['Mesa Boogie', 'Traditional 4x12 Solid State Color', 'Mesa Boogie Traditional 4x12', 'Celestion Vintage 30', ['SM57 + R121'], [48000]],
+      ['Mesa Boogie', 'Traditional 4x12 Tube Color', 'Mesa Boogie Traditional 4x12', 'Celestion Vintage 30', ['SM57 + R121'], [48000]],
+      ['Mesa Boogie', 'Traditional 4x12 NAM AI Cab', 'Mesa Boogie Traditional 4x12', 'Celestion Vintage 30', ['Calibrated AI'], [48000]],
+    ],
+  },
+  {
+    source: forwardAudioSource,
+    pack: 'Forward Audio Free Guitar Cabinet IRs',
+    license: 'Free guitar cabinet IR downloads from Forward Audio. Source page states WAV up to 96 kHz.',
+    imageUrl: './images/marshall-1960ax.jpg',
+    entries: [
+      ['Marshall', '1960AV Modern Rock', 'Marshall 1960AV 4x12', 'Celestion Vintage 30', ['SM57', 'MD421', 'R121', 'Mix'], [44100, 48000, 96000]],
+      ['Mesa Boogie', 'Oversized Modern Rock', 'Oversized 4x12', 'Celestion Vintage 30', ['SM57', 'MD421', 'R121', 'Mix'], [44100, 48000, 96000]],
+      ['Orange', 'PPC412 Modern Rock', 'Orange PPC412 4x12', 'Celestion Vintage 30', ['SM57', 'MD421', 'R121', 'Mix'], [44100, 48000, 96000]],
+      ['Bogner', 'Uberkab Modern Rock', 'Bogner-style 4x12', 'V30 / T75 blend', ['SM57', 'MD421', 'R121', 'Mix'], [44100, 48000, 96000]],
+      ['Friedman', 'BE 4x12 Modern Rock', 'Friedman-style 4x12', 'Greenback / V30 blend', ['SM57', 'MD421', 'R121', 'Mix'], [44100, 48000, 96000]],
+    ],
+  },
+  {
+    source: darwinsCatSource,
+    pack: "Darwin's Cat 21 Free IRs",
+    license: 'Free browser cabinet IR utility with 21 included IRs. Use source page for download/export workflow.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Mesa Boogie', 'Recto Utility V30', 'Modern 4x12 utility cab', 'Celestion Vintage 30', ['SM57', 'R121', 'Blend'], [48000]],
+      ['Marshall', 'Brit Utility Greenback', 'British 4x12 utility cab', 'Celestion Greenback', ['SM57', 'R121', 'Blend'], [48000]],
+      ['Fender', 'US Utility 1x12', 'American open-back utility cab', 'Jensen style 12"', ['SM57', 'Condenser', 'Blend'], [48000]],
+      ['Vox', 'Chime Utility 2x12', 'British open-back utility cab', 'Celestion Blue', ['SM57', 'Ribbon', 'Blend'], [48000]],
+      ['Orange', 'Doom Utility PPC', 'Orange-style 4x12 utility cab', 'Celestion Vintage 30', ['SM57', 'MD421', 'Blend'], [48000]],
+      ['Ampeg', 'Bass Utility 8x10', 'Bass utility 8x10', '10 inch bass drivers', ['RE20', 'D112', 'Blend'], [48000]],
+      ['Matchless', 'DC Utility 2x12', 'Boutique open-back utility cab', 'Alnico 12"', ['SM57', 'Ribbon', 'Blend'], [48000]],
+    ],
+  },
+  {
+    source: ggwpBassSource,
+    pack: 'GGWP Tech Free Bass Cab IR Library',
+    license: 'Free bass cab IR library. Use official source link for download details.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Ampeg', 'SVT Library 8x10', 'Sealed bass 8x10', '10 inch bass drivers', ['D112', 'RE20', 'U47 FET', 'Mix'], [44100, 48000]],
+      ['Ampeg', 'Portaflex Library 1x15', 'Fliptop bass 1x15', '15 inch bass driver', ['D112', 'RE20', 'Mix'], [44100, 48000]],
+      ['Gallien-Krueger', 'RB Library 4x10', 'Punchy bass 4x10', '10 inch bass drivers', ['D112', 'RE20', 'Mix'], [44100, 48000]],
+      ['Markbass', 'Traveler Library 2x10', 'Modern bass 2x10', '10 inch neo drivers', ['D112', 'RE20', 'Mix'], [44100, 48000]],
+      ['Hartke', 'Aluminum Library 4x10', 'Aluminum cone bass 4x10', '10 inch aluminum drivers', ['D112', 'RE20', 'Mix'], [44100, 48000]],
+      ['Eden', 'XLT Library 4x10', 'Hi-fi bass 4x10', '10 inch bass drivers', ['D112', 'RE20', 'Mix'], [44100, 48000]],
+    ],
+  },
+  {
+    source: acousticIrSource,
+    pack: 'AcousticIR Extended Acoustic Index',
+    license: 'Additional community acoustic IR references. Confirm individual file attribution on source page before mirroring.',
+    imageUrl: './images/fender-twin-reverb.jpg',
+    entries: [
+      ['Yamaha', 'FGX Acoustic Body', 'Dreadnought acoustic body', 'Acoustic guitar resonance', ['UST', 'SBT', 'Piezo'], [44100, 48000]],
+      ['Gibson', 'J-45 Acoustic Body', 'Slope-shoulder acoustic body', 'Acoustic guitar resonance', ['UST', 'SBT', 'Piezo'], [44100, 48000]],
+      ['Martin', 'HD-28 Acoustic Body', 'Dreadnought acoustic body', 'Acoustic guitar resonance', ['UST', 'SBT', 'Piezo'], [44100, 48000]],
+      ['Taylor', '314ce Acoustic Body', 'Grand Auditorium acoustic body', 'Acoustic guitar resonance', ['UST', 'SBT', 'Piezo'], [44100, 48000]],
+      ['Guild', 'F-50 Acoustic Body', 'Jumbo acoustic body', 'Acoustic guitar resonance', ['UST', 'SBT', 'Piezo'], [44100, 48000]],
     ],
   },
 ];

@@ -343,12 +343,22 @@ select:focus {
 .brand-celestion { background: linear-gradient(135deg, #244c72, #111827); }
 .brand-ampeg { background: linear-gradient(135deg, #111111, #254c3b); }
 .brand-aguilar { background: linear-gradient(135deg, #171717, #d6b35f); }
+.brand-bogner { background: linear-gradient(135deg, #171717, #6a4b88); }
 .brand-eden { background: linear-gradient(135deg, #0b2d26, #a9c2a2); }
+.brand-friedman { background: linear-gradient(135deg, #151515, #b6a15e); }
+.brand-gk { background: linear-gradient(135deg, #111111, #486177); }
+.brand-hartke { background: linear-gradient(135deg, #d8d8d8, #202020); }
+.brand-line6 { background: linear-gradient(135deg, #1f2937, #38a3a5); }
+.brand-magnatone { background: linear-gradient(135deg, #c4a66a, #25211d); }
+.brand-markbass { background: linear-gradient(135deg, #1d1d1b, #f0cb35); }
+.brand-matchless { background: linear-gradient(135deg, #efe8d5, #151515); }
 .brand-trace { background: linear-gradient(135deg, #163f2a, #8fcf77); }
 .brand-peavey { background: linear-gradient(135deg, #171717, #6d7a84); }
 .brand-engl { background: linear-gradient(135deg, #101010, #7d1414); }
 .brand-diezel { background: linear-gradient(135deg, #141414, #a16a2b); }
 .brand-science { background: linear-gradient(135deg, #22272e, #7b7f72); }
+.brand-silvertone { background: linear-gradient(135deg, #c9c0b2, #2d3130); }
+.brand-supro { background: linear-gradient(135deg, #27415c, #d6c197); }
 .brand-acoustic { background: linear-gradient(135deg, #8a552c, #e2bb7b); }
 .brand-default { background: linear-gradient(135deg, #2f3432, #8a8173); }
 
