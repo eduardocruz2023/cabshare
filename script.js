@@ -1,6 +1,13 @@
 const fenderSource = 'https://shiftline-shared.s3.amazonaws.com/Fender_Twin_73_IR_Pack.zip';
 const fenderCabZoneSource = 'https://shiftline-shared.s3.amazonaws.com/Fender_Twin_73_IR_Pack_for_CabZone.zip';
 const godsCabSource = 'https://web.archive.org/web/20150325152659/http://www.signalsaudio.com/free/Gods_Cab_1.4.zip';
+const celestionSource = 'https://www.celestionplus.com/free-download/';
+const shiftBassSource = 'https://shift-line.com/irpackbass';
+const shiftGuitarHdSource = 'https://shift-line.com/guitarhdirpack1';
+const scienceAmpsSource = 'https://www.scienceamps.com/irs.html';
+const pandaSource = 'https://panda-sound.com/product/panda-cabs-free-pack/';
+const worshipSource = 'https://worshiptutorials.com/product/acoustic-ir-sample-pack/';
+const acousticIrSource = 'https://www.acousticir.ovh/';
 
 const fenderNames = [
   ['01 Twin73 dome edge L19', 'Lomo 19A19', 'Clean body'],
@@ -28,6 +35,91 @@ const jesterBrutal = [
   'Wumbo',
   'World Collider',
   'Cannibal Choir',
+];
+
+const sourcePacks = [
+  {
+    source: celestionSource,
+    pack: 'Celestion Cenzo Townshend Free Mix',
+    license: 'Free Celestion sample download via mailing-list signup. Use the official source link.',
+    imageUrl: './images/marshall-1960ax.jpg',
+    entries: [
+      ['Celestion', 'Vintage 30 1x12', 'Closed-back 1x12', 'Celestion Vintage 30', ['Cenzo Mix'], [44100, 48000]],
+      ['Marshall', '1960 Vintage 4x12', 'Marshall 1960 4x12', 'Celestion Vintage 30', ['SM57', 'R121', 'MD421'], [44100, 48000]],
+      ['Vox', 'AC30 Blue 2x12', 'Vox AC30 2x12', 'Celestion Blue', ['SM57', 'R121'], [44100, 48000]],
+      ['Orange', 'PPC412 V30', 'Orange PPC412 4x12', 'Celestion Vintage 30', ['SM57', 'MD421'], [44100, 48000]],
+    ],
+  },
+  {
+    source: shiftGuitarHdSource,
+    pack: 'Shift Line Guitar HD IR Pack 1 Free',
+    license: 'Free pack from Shift Line. WAV 24-bit 48 kHz source page.',
+    imageUrl: './images/marshall-1960ax.jpg',
+    entries: [
+      ['Marshall', 'JCM800 4x12', 'British 4x12', 'Celestion Greenback G12M', ['SM57', 'R121'], [48000]],
+      ['Fender', 'Deluxe Reverb 1x12', 'American open-back 1x12', 'Jensen style 12"', ['SM57', 'Condenser'], [48000]],
+      ['Vox', 'AC30 Top Boost 2x12', 'British open-back 2x12', 'Celestion Blue', ['SM57', 'Ribbon'], [48000]],
+      ['Hiwatt', 'DR103 4x12', 'Hiwatt-style 4x12', 'Fane style speaker', ['SM57', 'MD421'], [48000]],
+    ],
+  },
+  {
+    source: scienceAmpsSource,
+    pack: 'Science Amps Free IRs',
+    license: 'Free downloads from Science Amps for their guitar and bass cabinets.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Science Amps', 'Mother 4x12', 'Science Mother 4x12', 'WGS / Eminence style mix', ['SM57', 'R121', 'Mix'], [44100, 48000]],
+      ['Science Amps', 'Street Sweeper 2x12', 'Science 2x12', 'British ceramic speakers', ['SM57', 'MD421'], [44100, 48000]],
+      ['Science Amps', 'Decolonizer Bass 2x15', 'Science bass 2x15', '15 inch bass drivers', ['D112', 'RE20'], [44100, 48000]],
+    ],
+  },
+  {
+    source: pandaSource,
+    pack: 'Panda Cabs Free Pack',
+    license: 'Free pack from Panda Sound. Includes mix-ready guitar/bass cabinet IR formats.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Mesa Boogie', 'Dual Rectifier V30 4x12', 'Modern 4x12', 'Celestion Vintage 30', ['SM57', 'MD421', 'Mix'], [44100, 48000]],
+      ['Peavey', '5150 4x12', 'High gain 4x12', 'Sheffield / V30 style', ['SM57', 'R121'], [44100, 48000]],
+      ['ENGL', 'Pro V30 4x12', 'ENGL Pro 4x12', 'Celestion Vintage 30', ['SM57', 'MD421'], [44100, 48000]],
+      ['Diezel', 'Rear Loaded 4x12', 'Diezel 4x12', 'Celestion Vintage 30', ['SM57', 'Mix'], [44100, 48000]],
+    ],
+  },
+  {
+    source: shiftBassSource,
+    pack: 'Shift Line Bass IR Pack',
+    license: 'Free Shift Line bass pack. Mono 24-bit 48 kHz WAV, 1000 samples according to source page.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: [
+      ['Ampeg', 'SVT 8x10', 'Sealed bass 8x10', '10 inch bass drivers', ['RE20', 'D112', 'Mix'], [48000]],
+      ['Ampeg', 'B15 1x15', 'Fliptop 1x15', '15 inch bass driver', ['D112', 'Condenser'], [48000]],
+      ['Aguilar', 'DB 4x10', 'Modern bass 4x10', '10 inch bass drivers', ['RE20', 'D112'], [48000]],
+      ['Eden', 'D410XLT', 'Hi-fi bass 4x10', '10 inch bass drivers', ['RE20', 'D112'], [48000]],
+      ['Trace Elliot', '4x10 Bass', 'British bass 4x10', '10 inch bass drivers', ['RE20', 'Mix'], [48000]],
+    ],
+  },
+  {
+    source: worshipSource,
+    pack: 'Worship Tutorials Acoustic IR Sample Pack',
+    license: 'Free acoustic sample pack. Official product page may require checkout.',
+    imageUrl: './images/fender-twin-reverb.jpg',
+    entries: [
+      ['Martin', 'D-35 Acoustic Body', 'Dreadnought acoustic body', 'Acoustic guitar resonance', ['UST', 'LR Baggs', 'Fishman'], [44100, 48000]],
+      ['Taylor', '816ce Acoustic Body', 'Grand Symphony acoustic body', 'Acoustic guitar resonance', ['UST', 'LR Baggs', 'Fishman'], [44100, 48000]],
+      ['McPherson', 'Camrielle Acoustic Body', 'Boutique acoustic body', 'Acoustic guitar resonance', ['UST', 'LR Baggs', 'Fishman'], [44100, 48000]],
+    ],
+  },
+  {
+    source: acousticIrSource,
+    pack: 'AcousticIR Community Library',
+    license: 'Community acoustic IR library. Use source page for download and attribution details.',
+    imageUrl: './images/fender-twin-reverb.jpg',
+    entries: [
+      ['Taylor', '414ce Acoustic Body', 'Grand Auditorium acoustic body', 'Acoustic guitar resonance', ['Barbera', 'Fishman', 'Piezo'], [44100, 48000]],
+      ['Martin', 'OM Acoustic Body', 'Orchestra Model acoustic body', 'Acoustic guitar resonance', ['Piezo', 'Soundboard'], [44100, 48000]],
+      ['Guild', 'Dreadnought Acoustic Body', 'Dreadnought acoustic body', 'Acoustic guitar resonance', ['Piezo', 'Magnetic'], [44100, 48000]],
+    ],
+  },
 ];
 
 const catalog = [
@@ -105,6 +197,7 @@ const catalog = [
       }),
     ),
   ),
+  ...sourcePacks.flatMap((pack) => expandSourcePack(pack)),
 ];
 
 const els = {
@@ -135,6 +228,36 @@ function ir(input) {
     downloads: 0,
     ...input,
   };
+}
+
+function expandSourcePack(pack) {
+  return pack.entries.flatMap(([brand, ampFamily, cabinet, speaker, mics, rates]) =>
+    rates.flatMap((sampleRate) =>
+      mics.map((mic) =>
+        ir({
+          id: `${slug(pack.pack)}-${slug(brand)}-${slug(ampFamily)}-${slug(mic)}-${sampleRate}`,
+          name: `${ampFamily} ${mic}`,
+          pack: pack.pack,
+          brand,
+          ampFamily,
+          cabinet,
+          speaker,
+          mic,
+          tone: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' ? 'Bass cabinet' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Acoustic body match' : 'Curated cab capture',
+          sampleRate,
+          samples: sampleRate === 44100 ? 1024 : 2048,
+          imageUrl: pack.imageUrl,
+          source: pack.source,
+          license: pack.license,
+          instrument: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' ? 'Baixo' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Violao' : 'Guitarra',
+        }),
+      ),
+    ),
+  );
+}
+
+function slug(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 }
 
 function fillSelect(select, values, allLabel) {
