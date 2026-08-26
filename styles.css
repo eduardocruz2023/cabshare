@@ -426,6 +426,17 @@ select:focus {
   background: var(--accent);
 }
 
+.pending-source {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-weight: 800;
+}
+
 .empty {
   padding: 24px;
 }

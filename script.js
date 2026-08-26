@@ -215,7 +215,7 @@ const catalog = [
         samples: sampleRate === 44100 ? 1024 : 2048,
         imageUrl: './images/marshall-1960ax.jpg',
         source: '#',
-        license: 'Local prepared pack. Add original download source before public mirroring.',
+        license: 'Fonte original ainda em revisao. Este item fica apenas como referencia ate a origem ser confirmada.',
       }),
     ),
   ),
@@ -343,6 +343,10 @@ function render() {
 
 function card(item) {
   const [visualClass, visualLabel] = brandVisuals[item.brand] || ['brand-default', item.brand];
+  const sourceAction =
+    item.source === '#'
+      ? '<span class="pending-source">Fonte em revisao</span>'
+      : `<a href="${item.source}" target="_blank" rel="noopener">Fonte oficial</a>`;
   return `
     <article class="card">
       <div class="brand-art ${visualClass}" role="img" aria-label="${escapeHtml(`${item.brand} ${item.cabinet}`)}">
@@ -364,7 +368,7 @@ function card(item) {
         </dl>
         <div class="card-foot">
           <p>${item.bitDepth}-bit / ${item.samples} samples</p>
-          <a href="${item.source}" target="_blank" rel="noopener">${item.source === '#' ? 'Catalogado' : 'Fonte oficial'}</a>
+          ${sourceAction}
         </div>
         <p class="license">${escapeHtml(item.license)}</p>
       </div>
