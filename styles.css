@@ -88,7 +88,7 @@ body {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
   gap: 36px;
-  align-items: end;
+  align-items: center;
   padding-top: 42px;
   padding-bottom: 28px;
 }
@@ -154,7 +154,7 @@ body {
 }
 
 .feature.large {
-  min-height: 300px;
+  min-height: 280px;
 }
 
 .feature img {
