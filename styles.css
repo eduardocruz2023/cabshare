@@ -110,10 +110,8 @@ body {
 }
 
 .metrics {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin-top: 30px;
+  display: inline-flex;
+  margin-top: 26px;
   border: 1px solid #151515;
   background: #151515;
 }
@@ -134,6 +132,7 @@ body {
 .metrics div {
   border: 0;
   background: transparent;
+  padding: 14px 18px;
 }
 
 .metrics div + div {
@@ -143,7 +142,7 @@ body {
 .metrics strong {
   display: block;
   color: #fffaf3;
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .metrics span,
@@ -478,6 +477,28 @@ select:focus {
   font-weight: 800;
 }
 
+.site-footer {
+  display: flex;
+  width: min(1200px, calc(100% - 40px));
+  margin: 38px auto 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  gap: 18px;
+  justify-content: flex-end;
+  font-size: 12px;
+}
+
+.site-footer span:first-child {
+  margin-right: auto;
+  color: #8a8173;
+  font-weight: 800;
+}
+
+.site-footer strong {
+  color: var(--ink);
+}
+
 .empty {
   padding: 24px;
 }
@@ -501,10 +522,6 @@ select:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .metrics {
-    grid-template-columns: 1fr;
-  }
-
   .metrics div + div {
     border-left: 0;
     border-top: 1px solid rgb(255 255 255 / 0.18);
@@ -523,5 +540,14 @@ select:focus {
 
   .nav {
     align-items: flex-start;
+  }
+
+  .site-footer {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .site-footer span:first-child {
+    flex-basis: 100%;
   }
 }
