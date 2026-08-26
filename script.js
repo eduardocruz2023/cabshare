@@ -88,6 +88,55 @@ const jesterBrutal = [
 const djamminGuitarCabs = Array.from({ length: 100 }, (_, index) => `Guitar Cab ${String(index + 1).padStart(3, '0')}`);
 const djamminBassCabs = Array.from({ length: 100 }, (_, index) => `Bass Cab ${String(index + 1).padStart(3, '0')}`);
 
+const bassBrands = ['Ampeg', 'Aguilar', 'Eden', 'Trace Elliot', 'Markbass', 'Hartke', 'Gallien-Krueger'];
+const acousticBrands = ['Taylor', 'Martin', 'McPherson', 'Guild', 'Yamaha', 'Gibson'];
+const shiftBassMics = [
+  'RE20 center',
+  'RE20 edge',
+  'RE20 off-axis',
+  'D112 center',
+  'D112 edge',
+  'D112 port',
+  'U47 FET center',
+  'U47 FET room',
+  'MD421 center',
+  'MD421 edge',
+  'Condenser close',
+  'Condenser room',
+  'Dynamic blend',
+  'Sub blend',
+  'Modern mix',
+  'Vintage mix',
+];
+const shiftBassDetailedEntries = [
+  ['Ampeg', 'SVT 8x10 Classic', 'Sealed bass 8x10', '10 inch bass drivers'],
+  ['Ampeg', 'SVT 8x10 Modern', 'Modern sealed bass 8x10', '10 inch bass drivers'],
+  ['Ampeg', 'B15 Fliptop 1x15', 'Fliptop 1x15', '15 inch bass driver'],
+  ['Ampeg', 'Portaflex 2x10', 'Compact bass 2x10', '10 inch bass drivers'],
+  ['Aguilar', 'DB 4x10', 'Modern bass 4x10', '10 inch bass drivers'],
+  ['Aguilar', 'DB 1x15', 'Modern bass 1x15', '15 inch bass driver'],
+  ['Aguilar', 'SL 2x12', 'Lightweight bass 2x12', '12 inch bass drivers'],
+  ['Eden', 'D410XLT', 'Hi-fi bass 4x10', '10 inch bass drivers'],
+  ['Eden', 'D115XLT', 'Hi-fi bass 1x15', '15 inch bass driver'],
+  ['Eden', 'D212XLT', 'Hi-fi bass 2x12', '12 inch bass drivers'],
+  ['Trace Elliot', '4x10 Bass', 'British bass 4x10', '10 inch bass drivers'],
+  ['Trace Elliot', '1x15 Bass', 'British bass 1x15', '15 inch bass driver'],
+  ['Trace Elliot', '2x10 Combo', 'British bass 2x10', '10 inch bass drivers'],
+  ['Markbass', 'Traveler 2x10', 'Modern neo bass 2x10', '10 inch neo drivers'],
+  ['Markbass', 'Standard 4x10HR', 'Modern bass 4x10', '10 inch neo drivers'],
+  ['Markbass', 'New York 1x15', 'Compact bass 1x15', '15 inch neo driver'],
+  ['Hartke', 'XL 4x10 Aluminum', 'Aluminum cone bass 4x10', '10 inch aluminum drivers'],
+  ['Hartke', 'Hydrive 4x10', 'Hybrid cone bass 4x10', '10 inch hybrid drivers'],
+  ['Hartke', 'Transporter 1x15', 'Bass 1x15', '15 inch bass driver'],
+  ['Gallien-Krueger', 'RBH 4x10', 'Punchy bass 4x10', '10 inch bass drivers'],
+  ['Gallien-Krueger', 'Neo 2x12', 'Modern bass 2x12', '12 inch neo drivers'],
+  ['Gallien-Krueger', 'Backline 1x15', 'Bass 1x15', '15 inch bass driver'],
+  ['Ampeg', 'Heritage 4x10', 'Vintage voiced bass 4x10', '10 inch bass drivers'],
+  ['Aguilar', 'GS 2x12', 'Warm bass 2x12', '12 inch bass drivers'],
+  ['Eden', 'Metro Combo 2x10', 'Combo bass 2x10', '10 inch bass drivers'],
+  ['Trace Elliot', 'Twin Valve 4x10', 'Tube bass 4x10', '10 inch bass drivers'],
+].map(([brand, ampFamily, cabinet, speaker]) => [brand, ampFamily, cabinet, speaker, shiftBassMics, [48000]]);
+
 const sourcePacks = [
   {
     source: celestionSource,
@@ -142,13 +191,7 @@ const sourcePacks = [
     pack: 'Shift Line Bass IR Pack',
     license: 'Free Shift Line bass pack com ZIP direto. Mono 24-bit 48 kHz WAV, 1000 samples according to source page.',
     imageUrl: './images/mesa-oversized-4x12.jpg',
-    entries: [
-      ['Ampeg', 'SVT 8x10', 'Sealed bass 8x10', '10 inch bass drivers', ['RE20', 'D112', 'Mix'], [48000]],
-      ['Ampeg', 'B15 1x15', 'Fliptop 1x15', '15 inch bass driver', ['D112', 'Condenser'], [48000]],
-      ['Aguilar', 'DB 4x10', 'Modern bass 4x10', '10 inch bass drivers', ['RE20', 'D112'], [48000]],
-      ['Eden', 'D410XLT', 'Hi-fi bass 4x10', '10 inch bass drivers', ['RE20', 'D112'], [48000]],
-      ['Trace Elliot', '4x10 Bass', 'British bass 4x10', '10 inch bass drivers', ['RE20', 'Mix'], [48000]],
-    ],
+    entries: shiftBassDetailedEntries,
   },
   {
     source: djammincabsSource,
@@ -441,14 +484,14 @@ function expandSourcePack(pack) {
           cabinet,
           speaker,
           mic,
-          tone: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' ? 'Bass cabinet' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Acoustic body match' : 'Curated cab capture',
+          tone: bassBrands.includes(brand) ? 'Bass cabinet' : acousticBrands.includes(brand) ? 'Acoustic body match' : 'Curated cab capture',
           sampleRate,
           samples: sampleRate === 44100 ? 1024 : 2048,
           imageUrl: pack.imageUrl,
           source: pack.source,
           downloadUrl: pack.downloadUrl,
           license: pack.license,
-          instrument: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' || (brand === 'Djammincabs' && cabinet.includes('bass')) ? 'Baixo' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Violao' : 'Guitarra',
+          instrument: bassBrands.includes(brand) || (brand === 'Djammincabs' && cabinet.includes('bass')) ? 'Baixo' : acousticBrands.includes(brand) ? 'Violao' : 'Guitarra',
         }),
       ),
     ),
