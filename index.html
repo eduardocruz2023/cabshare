@@ -10,57 +10,110 @@
     />
     <meta name="theme-color" content="#111111" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=20260826-remove-format-strip1" />
+    <link rel="stylesheet" href="./styles.css?v=20260826-reference-ui1" />
   </head>
   <body>
-    <header class="hero">
+    <header class="hero" id="top">
       <nav class="nav">
-        <div>
-          <p class="eyebrow">Biblioteca de IRs</p>
-          <h1>CabShare</h1>
+        <h1>CabShare</h1>
+        <div class="nav-links">
+          <a href="#top">Inicio</a>
+          <a class="active" href="#catalog">Biblioteca</a>
+          <a href="#how">Como funciona</a>
         </div>
-        <a class="button dark" href="#catalog">Explorar</a>
+        <a class="button dark" href="#catalog">Explorar IRs <span aria-hidden="true">-&gt;</span></a>
       </nav>
       <div class="hero-grid">
         <section class="hero-copy">
-          <p class="eyebrow green">Guitarra, baixo, violao e modeladores</p>
-          <h2>Encontre o cab certo sem cavar em ZIP infinito.</h2>
+          <p class="eyebrow">Biblioteca de IRs</p>
+          <h2>Encontre o timbre certo. Sem cavar em ZIPs.</h2>
           <p>
-            IRs organizados por instrumento, amp, gabinete, microfone e sample rate. Esta versao publica abre direto
-            em qualquer navegador, sem login do ChatGPT.
+            IRs organizados por instrumento, amp, gabinete, microfone e sample rate. Acesse direto no navegador,
+            sem login e sem complicacao.
           </p>
+          <div class="hero-actions">
+            <a class="button accent" href="#catalog">Explorar biblioteca <span aria-hidden="true">-&gt;</span></a>
+            <a class="text-link" href="#how">Como funciona <span aria-hidden="true">-&gt;</span></a>
+          </div>
           <div class="metrics">
-            <div><strong id="totalCount">0</strong><span>IRs catalogados</span></div>
+            <div><span class="metric-icon pulse" aria-hidden="true"></span><strong id="totalCount">0</strong><small>IRs</small></div>
+            <div><span class="metric-icon users" aria-hidden="true"></span><strong id="heroVisitCount">0</strong><small>acessos</small></div>
+            <div><span class="metric-icon download" aria-hidden="true"></span><strong id="heroDownloadCount">0</strong><small>downloads</small></div>
           </div>
         </section>
         <section class="feature-stack" aria-label="Destaques">
           <article class="feature large">
             <img src="./images/fender-twin-reverb-cutout.png" alt="Fender Twin Reverb" />
-            <div><span>Clean / combo</span><strong>Fender-style clean</strong></div>
+            <div><span>Clean</span><span>Combo</span><strong>Fender-style clean</strong></div>
           </article>
           <article class="feature">
             <img src="./images/mesa-oversized-4x12-cutout.png" alt="Mesa Boogie Rectifier 4x12" />
-            <div><span>High gain / 4x12</span><strong>Mesa Rectifier</strong></div>
+            <div><span>High gain</span><span>4x12</span><strong>Mesa Rectifier</strong></div>
           </article>
         </section>
       </div>
     </header>
 
     <main id="catalog" class="catalog">
-      <div class="catalog-head">
-        <div>
-          <p class="eyebrow">Organizacao</p>
-          <h2>Navegue por instrumento, marca, amp e taxa</h2>
-        </div>
+      <section class="finder" id="how" aria-label="Busca de IRs">
+        <h2>Encontre seu IR</h2>
         <form class="filters" id="filters">
-          <label class="wide">Busca<input id="q" placeholder="Fender, V30, Greenback..." /></label>
+          <label class="search-label">Busca<input id="q" placeholder="Busque por marca, modelo ou estilo..." /></label>
+          <button class="button accent search-button" type="submit">Buscar</button>
           <label>Instrumento<select id="instrument"></select></label>
           <label>Marca<select id="brand"></select></label>
+          <label>Amp<select id="amp"></select></label>
           <label>Acesso<select id="access"></select></label>
           <label>Taxa<select id="sampleRate"></select></label>
-          <label>Amp<select id="amp"></select></label>
+          <button class="clear-button" id="clearFilters" type="button">Limpar filtros</button>
         </form>
-      </div>
+        <div class="popular">
+          <strong>Buscas populares</strong>
+          <button type="button" data-chip="Clean">Clean</button>
+          <button type="button" data-chip="High gain">High gain</button>
+          <button type="button" data-chip="4x12">4x12</button>
+          <button type="button" data-chip="V30">V30</button>
+        </div>
+      </section>
+
+      <section class="featured" aria-label="IRs em destaque">
+        <div class="section-title">
+          <h2>IRs em destaque</h2>
+          <a href="#results">Ver todos <span aria-hidden="true">-&gt;</span></a>
+        </div>
+        <div class="featured-grid">
+          <article class="featured-card">
+            <img src="./images/fender-twin-reverb.jpg" alt="Fender Twin Reverb" />
+            <div>
+              <h3>Fender Twin Clean</h3>
+              <p><span>Clean</span><span>Combo</span><span>2x12</span></p>
+              <small>SM57 - R121 - 44.1 kHz</small>
+              <em>Fender Twin Reverb</em>
+            </div>
+            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
+          </article>
+          <article class="featured-card">
+            <img src="./images/mesa-oversized-4x12.jpg" alt="Mesa Boogie Rectifier" />
+            <div>
+              <h3>Mesa Rectifier V30</h3>
+              <p><span>High gain</span><span>4x12</span><span>V30</span></p>
+              <small>SM57 - R121 - 48 kHz</small>
+              <em>Mesa Boogie Rectifier</em>
+            </div>
+            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
+          </article>
+          <article class="featured-card">
+            <img src="./images/marshall-1960ax.jpg" alt="Marshall 1960A" />
+            <div>
+              <h3>Greenback Crunch</h3>
+              <p><span>Crunch</span><span>4x12</span><span>G12M</span></p>
+              <small>SM57 - R121 - 44.1 kHz</small>
+              <em>Marshall 1960A</em>
+            </div>
+            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
+          </article>
+        </div>
+      </section>
       <p class="status" id="status">Escolha um filtro para carregar os IRs.</p>
       <div id="results" class="results"></div>
     </main>
@@ -71,6 +124,6 @@
       <span><strong id="downloadCount">0</strong> downloads</span>
     </footer>
 
-    <script src="./script.js?v=20260826-footer-stats1"></script>
+    <script src="./script.js?v=20260826-reference-ui1"></script>
   </body>
 </html>

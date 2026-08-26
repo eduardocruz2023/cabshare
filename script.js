@@ -443,6 +443,8 @@ const els = {
   total: document.querySelector('#totalCount'),
   visits: document.querySelector('#visitCount'),
   downloads: document.querySelector('#downloadCount'),
+  heroVisits: document.querySelector('#heroVisitCount'),
+  heroDownloads: document.querySelector('#heroDownloadCount'),
   q: document.querySelector('#q'),
   instrument: document.querySelector('#instrument'),
   brand: document.querySelector('#brand'),
@@ -451,13 +453,27 @@ const els = {
   amp: document.querySelector('#amp'),
   status: document.querySelector('#status'),
   results: document.querySelector('#results'),
+  filters: document.querySelector('#filters'),
+  clearFilters: document.querySelector('#clearFilters'),
 };
 
 els.total.textContent = String(catalog.length);
 syncFilterOptions(readFilters());
 
-document.querySelector('#filters').addEventListener('input', render);
-document.querySelector('#filters').addEventListener('change', render);
+els.filters.addEventListener('submit', (event) => {
+  event.preventDefault();
+  render();
+  document.querySelector('#results').scrollIntoView({ block: 'start' });
+});
+els.filters.addEventListener('input', render);
+els.filters.addEventListener('change', render);
+els.clearFilters.addEventListener('click', clearFilters);
+document.querySelectorAll('[data-chip]').forEach((button) => {
+  button.addEventListener('click', () => {
+    els.q.value = button.dataset.chip;
+    render();
+  });
+});
 document.addEventListener('click', handleDownloadClick);
 initStats();
 render();
@@ -598,6 +614,17 @@ function render() {
     .join('');
 }
 
+function clearFilters() {
+  els.q.value = '';
+  els.instrument.value = 'Todos';
+  els.brand.value = 'Todos';
+  els.access.value = 'Todos';
+  els.sampleRate.value = 'Todos';
+  els.amp.value = 'Todos';
+  syncFilterOptions(readFilters());
+  render();
+}
+
 function card(item) {
   const [visualClass, visualLabel] = brandVisuals[item.brand] || ['brand-default', item.brand];
   const access = accessType(item);
@@ -683,6 +710,8 @@ function updateStats(stats) {
   if (!stats) return;
   els.visits.textContent = formatNumber(stats.visits || 0);
   els.downloads.textContent = formatNumber(stats.downloads || 0);
+  els.heroVisits.textContent = formatNumber(stats.visits || 0);
+  els.heroDownloads.textContent = formatNumber(stats.downloads || 0);
 }
 
 function formatNumber(value) {
