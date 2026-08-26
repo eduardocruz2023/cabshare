@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "echo Static site"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^10.0.11",
+    "@netlify/functions": "^5.0.0"
+  },
+  "devDependencies": {}
+}

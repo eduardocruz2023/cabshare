@@ -353,6 +353,8 @@ const catalog = [
 
 const els = {
   total: document.querySelector('#totalCount'),
+  visits: document.querySelector('#visitCount'),
+  downloads: document.querySelector('#downloadCount'),
   q: document.querySelector('#q'),
   instrument: document.querySelector('#instrument'),
   brand: document.querySelector('#brand'),
@@ -367,6 +369,8 @@ syncFilterOptions(readFilters());
 
 document.querySelector('#filters').addEventListener('input', render);
 document.querySelector('#filters').addEventListener('change', render);
+document.addEventListener('click', handleDownloadClick);
+initStats();
 render();
 
 function ir(input) {
@@ -505,7 +509,7 @@ function card(item) {
   const sourceAction =
     item.source === '#'
       ? '<span class="pending-source">Fonte em revisao</span>'
-      : `<a href="${item.source}" target="_blank" rel="noopener">Fonte oficial</a>`;
+      : `<a href="${item.source}" target="_blank" rel="noopener" data-download-id="${escapeHtml(item.id)}">Fonte oficial</a>`;
   return `
     <article class="card">
       <div class="brand-art ${visualClass}" role="img" aria-label="${escapeHtml(`${item.brand} ${item.cabinet}`)}">
@@ -537,6 +541,48 @@ function card(item) {
 
 function emptyState(text = 'Escolha um filtro para ver os IRs.') {
   return `<div class="empty"><strong>${escapeHtml(text)}</strong><p>O catalogo so renderiza resultados apos uma selecao para manter a pagina leve.</p></div>`;
+}
+
+async function initStats() {
+  const visitedKey = 'cabshare-visit-counted';
+  const shouldCountVisit = !sessionStorage.getItem(visitedKey);
+  if (shouldCountVisit) {
+    sessionStorage.setItem(visitedKey, '1');
+  }
+
+  const stats = await sendStats(shouldCountVisit ? { event: 'visit' } : null);
+  updateStats(stats);
+}
+
+async function handleDownloadClick(event) {
+  const link = event.target.closest('[data-download-id]');
+  if (!link) return;
+  const stats = await sendStats({ event: 'download', irId: link.dataset.downloadId });
+  updateStats(stats);
+}
+
+async function sendStats(payload) {
+  try {
+    const response = await fetch('/api/stats', {
+      method: payload ? 'POST' : 'GET',
+      headers: payload ? { 'Content-Type': 'application/json' } : undefined,
+      body: payload ? JSON.stringify(payload) : undefined,
+    });
+    if (!response.ok) return null;
+    return response.json();
+  } catch {
+    return null;
+  }
+}
+
+function updateStats(stats) {
+  if (!stats) return;
+  els.visits.textContent = formatNumber(stats.visits || 0);
+  els.downloads.textContent = formatNumber(stats.downloads || 0);
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat('pt-BR').format(value);
 }
 
 function unique(values) {
