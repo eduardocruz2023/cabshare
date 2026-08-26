@@ -91,7 +91,7 @@ const catalog = [
         id: `jester-${sampleRate}-${index}`,
         name,
         pack: "Jester's Brutal Pack",
-        brand: 'Modern high gain',
+        brand: 'Marshall',
         ampFamily: 'BG412S V30 / DV-77',
         cabinet: 'Modified Behringer BG412S 4x12',
         speaker: index % 2 ? 'Eminence DV-77' : 'Celestion Vintage 30',
@@ -111,6 +111,7 @@ const els = {
   total: document.querySelector('#totalCount'),
   q: document.querySelector('#q'),
   instrument: document.querySelector('#instrument'),
+  brand: document.querySelector('#brand'),
   sampleRate: document.querySelector('#sampleRate'),
   amp: document.querySelector('#amp'),
   status: document.querySelector('#status'),
@@ -119,6 +120,7 @@ const els = {
 
 els.total.textContent = String(catalog.length);
 fillSelect(els.instrument, ['Todos', ...unique(catalog.map((item) => item.instrument))], 'Todos');
+fillSelect(els.brand, ['Todos', ...unique(catalog.map((item) => item.brand))], 'Todas as marcas');
 fillSelect(els.sampleRate, ['Todos', ...unique(catalog.map((item) => formatSampleRate(item.sampleRate)))], 'Todos');
 fillSelect(els.amp, ['Todos', ...unique(catalog.map((item) => item.ampFamily))], 'Todos os amps');
 
@@ -144,9 +146,10 @@ function fillSelect(select, values, allLabel) {
 function render() {
   const query = els.q.value.trim().toLowerCase();
   const instrument = els.instrument.value;
+  const brand = els.brand.value;
   const sampleRate = els.sampleRate.value;
   const amp = els.amp.value;
-  const hasFilter = Boolean(query || instrument !== 'Todos' || sampleRate !== 'Todos' || amp !== 'Todos');
+  const hasFilter = Boolean(query || instrument !== 'Todos' || brand !== 'Todos' || sampleRate !== 'Todos' || amp !== 'Todos');
 
   if (!hasFilter) {
     els.status.textContent = 'Escolha um filtro para carregar os IRs.';
@@ -159,6 +162,7 @@ function render() {
     return (
       (!query || haystack.includes(query)) &&
       (instrument === 'Todos' || item.instrument === instrument) &&
+      (brand === 'Todos' || item.brand === brand) &&
       (sampleRate === 'Todos' || formatSampleRate(item.sampleRate) === sampleRate) &&
       (amp === 'Todos' || item.ampFamily === amp)
     );
