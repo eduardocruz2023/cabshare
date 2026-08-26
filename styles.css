@@ -242,7 +242,7 @@ body {
 
 .filters {
   display: grid;
-  grid-template-columns: 1.5fr repeat(4, minmax(120px, 1fr));
+  grid-template-columns: minmax(170px, 1.35fr) repeat(5, minmax(112px, 1fr));
   gap: 10px;
 }
 

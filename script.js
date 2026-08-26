@@ -403,6 +403,7 @@ const els = {
   q: document.querySelector('#q'),
   instrument: document.querySelector('#instrument'),
   brand: document.querySelector('#brand'),
+  access: document.querySelector('#access'),
   sampleRate: document.querySelector('#sampleRate'),
   amp: document.querySelector('#amp'),
   status: document.querySelector('#status'),
@@ -471,6 +472,7 @@ function readFilters() {
     query: els.q.value.trim().toLowerCase(),
     instrument: els.instrument.value || 'Todos',
     brand: els.brand.value || 'Todos',
+    access: els.access.value || 'Todos',
     sampleRate: els.sampleRate.value || 'Todos',
     amp: els.amp.value || 'Todos',
   };
@@ -482,6 +484,7 @@ function matchesFilters(item, filters, ignoredField) {
     (!filters.query || haystack.includes(filters.query)) &&
     (ignoredField === 'instrument' || filters.instrument === 'Todos' || item.instrument === filters.instrument) &&
     (ignoredField === 'brand' || filters.brand === 'Todos' || item.brand === filters.brand) &&
+    (ignoredField === 'access' || filters.access === 'Todos' || accessType(item) === filters.access) &&
     (ignoredField === 'sampleRate' || filters.sampleRate === 'Todos' || formatSampleRate(item.sampleRate) === filters.sampleRate) &&
     (ignoredField === 'amp' || filters.amp === 'Todos' || item.ampFamily === filters.amp)
   );
@@ -498,6 +501,7 @@ function optionsFor(filters, field, mapper) {
 function syncFilterOptions(filters) {
   fillSelect(els.instrument, optionsFor(filters, 'instrument', (item) => item.instrument), 'Todos');
   fillSelect(els.brand, optionsFor(filters, 'brand', (item) => item.brand), 'Todas as marcas');
+  fillSelect(els.access, optionsFor(filters, 'access', accessType), 'Todos');
   fillSelect(els.sampleRate, optionsFor(filters, 'sampleRate', (item) => formatSampleRate(item.sampleRate)), 'Todos');
   fillSelect(els.amp, optionsFor(filters, 'amp', (item) => item.ampFamily), 'Todos os amps');
 }
@@ -510,6 +514,7 @@ function render() {
     syncedFilters.query ||
       syncedFilters.instrument !== 'Todos' ||
       syncedFilters.brand !== 'Todos' ||
+      syncedFilters.access !== 'Todos' ||
       syncedFilters.sampleRate !== 'Todos' ||
       syncedFilters.amp !== 'Todos',
   );
@@ -552,8 +557,9 @@ function render() {
 
 function card(item) {
   const [visualClass, visualLabel] = brandVisuals[item.brand] || ['brand-default', item.brand];
+  const access = accessType(item);
   const actionUrl = item.downloadUrl || item.source;
-  const actionLabel = item.downloadUrl ? 'Download direto' : 'Fonte oficial';
+  const actionLabel = access;
   const actionClass = item.downloadUrl ? 'direct-download' : '';
   const sourceAction =
     item.source === '#'
@@ -586,6 +592,12 @@ function card(item) {
       </div>
     </article>
   `;
+}
+
+function accessType(item) {
+  if (item.downloadUrl) return 'Download direto';
+  if (item.source === '#') return 'Fonte em revisao';
+  return 'Fonte oficial';
 }
 
 function emptyState(text = 'Escolha um filtro para ver os IRs.') {
