@@ -363,10 +363,7 @@ const els = {
 };
 
 els.total.textContent = String(catalog.length);
-fillSelect(els.instrument, ['Todos', ...unique(catalog.map((item) => item.instrument))], 'Todos');
-fillSelect(els.brand, ['Todos', ...unique(catalog.map((item) => item.brand))], 'Todas as marcas');
-fillSelect(els.sampleRate, ['Todos', ...unique(catalog.map((item) => formatSampleRate(item.sampleRate)))], 'Todos');
-fillSelect(els.amp, ['Todos', ...unique(catalog.map((item) => item.ampFamily))], 'Todos os amps');
+syncFilterOptions(readFilters());
 
 document.querySelector('#filters').addEventListener('input', render);
 document.querySelector('#filters').addEventListener('change', render);
@@ -412,18 +409,60 @@ function slug(value) {
 }
 
 function fillSelect(select, values, allLabel) {
+  const selected = select.value || 'Todos';
   select.innerHTML = values
     .map((value) => `<option value="${escapeHtml(value)}">${value === 'Todos' ? allLabel : escapeHtml(value)}</option>`)
     .join('');
+  select.value = values.includes(selected) ? selected : 'Todos';
+}
+
+function readFilters() {
+  return {
+    query: els.q.value.trim().toLowerCase(),
+    instrument: els.instrument.value || 'Todos',
+    brand: els.brand.value || 'Todos',
+    sampleRate: els.sampleRate.value || 'Todos',
+    amp: els.amp.value || 'Todos',
+  };
+}
+
+function matchesFilters(item, filters, ignoredField) {
+  const haystack = `${item.name} ${item.pack} ${item.brand} ${item.ampFamily} ${item.cabinet} ${item.speaker} ${item.tone}`.toLowerCase();
+  return (
+    (!filters.query || haystack.includes(filters.query)) &&
+    (ignoredField === 'instrument' || filters.instrument === 'Todos' || item.instrument === filters.instrument) &&
+    (ignoredField === 'brand' || filters.brand === 'Todos' || item.brand === filters.brand) &&
+    (ignoredField === 'sampleRate' || filters.sampleRate === 'Todos' || formatSampleRate(item.sampleRate) === filters.sampleRate) &&
+    (ignoredField === 'amp' || filters.amp === 'Todos' || item.ampFamily === filters.amp)
+  );
+}
+
+function filterRows(filters) {
+  return catalog.filter((item) => matchesFilters(item, filters));
+}
+
+function optionsFor(filters, field, mapper) {
+  return ['Todos', ...unique(catalog.filter((item) => matchesFilters(item, filters, field)).map(mapper))];
+}
+
+function syncFilterOptions(filters) {
+  fillSelect(els.instrument, optionsFor(filters, 'instrument', (item) => item.instrument), 'Todos');
+  fillSelect(els.brand, optionsFor(filters, 'brand', (item) => item.brand), 'Todas as marcas');
+  fillSelect(els.sampleRate, optionsFor(filters, 'sampleRate', (item) => formatSampleRate(item.sampleRate)), 'Todos');
+  fillSelect(els.amp, optionsFor(filters, 'amp', (item) => item.ampFamily), 'Todos os amps');
 }
 
 function render() {
-  const query = els.q.value.trim().toLowerCase();
-  const instrument = els.instrument.value;
-  const brand = els.brand.value;
-  const sampleRate = els.sampleRate.value;
-  const amp = els.amp.value;
-  const hasFilter = Boolean(query || instrument !== 'Todos' || brand !== 'Todos' || sampleRate !== 'Todos' || amp !== 'Todos');
+  const filters = readFilters();
+  syncFilterOptions(filters);
+  const syncedFilters = readFilters();
+  const hasFilter = Boolean(
+    syncedFilters.query ||
+      syncedFilters.instrument !== 'Todos' ||
+      syncedFilters.brand !== 'Todos' ||
+      syncedFilters.sampleRate !== 'Todos' ||
+      syncedFilters.amp !== 'Todos',
+  );
 
   if (!hasFilter) {
     els.status.textContent = 'Escolha um filtro para carregar os IRs.';
@@ -431,16 +470,7 @@ function render() {
     return;
   }
 
-  const rows = catalog.filter((item) => {
-    const haystack = `${item.name} ${item.pack} ${item.brand} ${item.ampFamily} ${item.cabinet} ${item.speaker} ${item.tone}`.toLowerCase();
-    return (
-      (!query || haystack.includes(query)) &&
-      (instrument === 'Todos' || item.instrument === instrument) &&
-      (brand === 'Todos' || item.brand === brand) &&
-      (sampleRate === 'Todos' || formatSampleRate(item.sampleRate) === sampleRate) &&
-      (amp === 'Todos' || item.ampFamily === amp)
-    );
-  });
+  const rows = filterRows(syncedFilters);
 
   els.status.textContent = `${rows.length} IRs encontrados`;
   if (!rows.length) {
