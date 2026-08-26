@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cabshare-irs.netlify.app/sitemap.xml
