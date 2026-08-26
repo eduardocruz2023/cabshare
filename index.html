@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CabShare - Biblioteca de IRs</title>
+    <meta
+      name="description"
+      content="Biblioteca publica de impulse responses para guitarra, baixo, DAWs, plugins e pedaleiras."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="nav">
+        <div>
+          <p class="eyebrow">Biblioteca de IRs</p>
+          <h1>CabShare</h1>
+        </div>
+        <a class="button dark" href="#catalog">Explorar</a>
+      </nav>
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow green">Guitarra, baixo, violao e modeladores</p>
+          <h2>Encontre o cab certo sem cavar em ZIP infinito.</h2>
+          <p>
+            IRs organizados por instrumento, amp, gabinete, microfone e sample rate. Esta versao publica abre direto
+            em qualquer navegador, sem login do ChatGPT.
+          </p>
+          <div class="metrics">
+            <div><strong id="totalCount">0</strong><span>IRs catalogados</span></div>
+            <div><strong>WAV</strong><span>Formatos</span></div>
+            <div><strong>Publico</strong><span>Acesso</span></div>
+          </div>
+        </section>
+        <section class="feature-stack" aria-label="Destaques">
+          <article class="feature large">
+            <img src="./images/fender-twin-reverb.jpg" alt="Fender Twin Reverb" />
+            <div><strong>Fender-style clean</strong><span>Combos americanos</span></div>
+          </article>
+          <article class="feature">
+            <img src="./images/mesa-oversized-4x12.jpg" alt="Mesa Boogie Rectifier 4x12" />
+            <div><strong>Mesa Rectifier</strong><span>High gain moderno</span></div>
+          </article>
+        </section>
+      </div>
+    </header>
+
+    <section class="formats">
+      <article><strong>Universal WAV</strong><span>WAV mono/stereo conforme o loader</span></article>
+      <article><strong>Line 6 Helix/HX</strong><span>48 kHz, mono, ate 2048 samples</span></article>
+      <article><strong>HeadRush</strong><span>WAV/AIFF, ate 192 kHz e 32-bit</span></article>
+      <article><strong>Mooer Preamp Live</strong><span>44.1 kHz, 24-bit, 1024 samples</span></article>
+    </section>
+
+    <main id="catalog" class="catalog">
+      <div class="catalog-head">
+        <div>
+          <p class="eyebrow">Organizacao</p>
+          <h2>Navegue por instrumento, amp e taxa</h2>
+        </div>
+        <form class="filters" id="filters">
+          <label class="wide">Busca<input id="q" placeholder="Fender, V30, Greenback..." /></label>
+          <label>Instrumento<select id="instrument"></select></label>
+          <label>Taxa<select id="sampleRate"></select></label>
+          <label>Amp<select id="amp"></select></label>
+        </form>
+      </div>
+      <p class="status" id="status">Escolha um filtro para carregar os IRs.</p>
+      <div id="results" class="results"></div>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
