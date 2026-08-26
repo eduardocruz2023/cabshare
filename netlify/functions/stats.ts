@@ -27,7 +27,15 @@ const json = (body: unknown, status = 200) =>
 async function readStats() {
   const store = getStore({ name: "cabshare-stats", consistency: "strong" });
   const stats = (await store.get("totals", { type: "json" })) as Stats | null;
-  return { store, stats: stats || defaultStats() };
+  const current = stats || defaultStats();
+  const testDownloads = current.irDownloads["test-check"] || 0;
+  if (testDownloads) {
+    current.downloads = Math.max(0, current.downloads - testDownloads);
+    delete current.irDownloads["test-check"];
+    current.updatedAt = new Date().toISOString();
+    await store.setJSON("totals", current);
+  }
+  return { store, stats: current };
 }
 
 export default async (req: Request, context: Context) => {
