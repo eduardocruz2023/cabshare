@@ -3,6 +3,7 @@ const fenderCabZoneSource = 'https://shiftline-shared.s3.amazonaws.com/Fender_Tw
 const godsCabSource = 'https://web.archive.org/web/20150325152659/http://www.signalsaudio.com/free/Gods_Cab_1.4.zip';
 const celestionSource = 'https://www.celestionplus.com/free-download/';
 const shiftBassSource = 'https://shift-line.com/irpackbass';
+const shiftBassDownload = 'https://shiftline-shared.s3.amazonaws.com/Shift_Line_Bass_IR_Pack.zip';
 const shiftGuitarHdSource = 'https://shift-line.com/guitarhdirpack1';
 const scienceAmpsSource = 'https://www.scienceamps.com/irs.html';
 const pandaSource = 'https://panda-sound.com/product/panda-cabs-free-pack/';
@@ -15,6 +16,11 @@ const mlSoundLabSource = 'https://ml-sound-lab.com/pages/free-premium-ir';
 const forwardAudioSource = 'https://www.forward-audio.com/downloads';
 const darwinsCatSource = 'https://darwinscat.com/sound-utils/cabinet-ir-utility';
 const ggwpBassSource = 'https://ggwptech.com/free-bass-cab-impulse-response-library';
+const jesterBrutalSource = 'https://www.jester-dyne-productions.com/brutal-ir-pack/';
+const jesterBrutalDownload = 'https://www.jester-dyne-productions.com/content/files/2023/04/JestersBrutalPack_1.0.zip';
+const djammincabsSource = 'https://zystrix.com/djammincabs.htm';
+const djamminGuitarDownload = 'https://zystrix.com/Djammincabs%20100%20Free%20Guitar%20IR%20Cabs.zip';
+const djamminBassDownload = 'https://zystrix.com/Djammincabs%20100%20Free%20Bass%20IR%20Cabs.zip';
 
 const brandVisuals = {
   Aguilar: ['brand-aguilar', 'Aguilar'],
@@ -22,6 +28,7 @@ const brandVisuals = {
   Bogner: ['brand-bogner', 'Bogner'],
   Celestion: ['brand-celestion', 'Celestion'],
   Diezel: ['brand-diezel', 'Diezel'],
+  Djammincabs: ['brand-djammin', 'Djammincabs'],
   Eden: ['brand-eden', 'Eden'],
   ENGL: ['brand-engl', 'ENGL'],
   Fender: ['brand-fender', 'Fender'],
@@ -78,6 +85,9 @@ const jesterBrutal = [
   'Cannibal Choir',
 ];
 
+const djamminGuitarCabs = Array.from({ length: 100 }, (_, index) => `Guitar Cab ${String(index + 1).padStart(3, '0')}`);
+const djamminBassCabs = Array.from({ length: 100 }, (_, index) => `Bass Cab ${String(index + 1).padStart(3, '0')}`);
+
 const sourcePacks = [
   {
     source: celestionSource,
@@ -128,8 +138,9 @@ const sourcePacks = [
   },
   {
     source: shiftBassSource,
+    downloadUrl: shiftBassDownload,
     pack: 'Shift Line Bass IR Pack',
-    license: 'Free Shift Line bass pack. Mono 24-bit 48 kHz WAV, 1000 samples according to source page.',
+    license: 'Free Shift Line bass pack com ZIP direto. Mono 24-bit 48 kHz WAV, 1000 samples according to source page.',
     imageUrl: './images/mesa-oversized-4x12.jpg',
     entries: [
       ['Ampeg', 'SVT 8x10', 'Sealed bass 8x10', '10 inch bass drivers', ['RE20', 'D112', 'Mix'], [48000]],
@@ -138,6 +149,36 @@ const sourcePacks = [
       ['Eden', 'D410XLT', 'Hi-fi bass 4x10', '10 inch bass drivers', ['RE20', 'D112'], [48000]],
       ['Trace Elliot', '4x10 Bass', 'British bass 4x10', '10 inch bass drivers', ['RE20', 'Mix'], [48000]],
     ],
+  },
+  {
+    source: djammincabsSource,
+    downloadUrl: djamminGuitarDownload,
+    pack: 'Djammincabs 100 Free Guitar IR Cabs',
+    license: 'Pacote gratuito com 100 IRs de guitarra em WAV mono 48 kHz / 24-bit PCM, conforme a pagina do autor.',
+    imageUrl: './images/marshall-1960ax.jpg',
+    entries: djamminGuitarCabs.map((name) => [
+      'Djammincabs',
+      name,
+      'Synthetic guitar cabinet IR',
+      'Designed cabinet curve',
+      ['Direct WAV pack'],
+      [48000],
+    ]),
+  },
+  {
+    source: djammincabsSource,
+    downloadUrl: djamminBassDownload,
+    pack: 'Djammincabs 100 Free Bass IR Cabs',
+    license: 'Pacote gratuito com 100 IRs de baixo em WAV mono 48 kHz / 24-bit PCM, conforme a pagina do autor.',
+    imageUrl: './images/mesa-oversized-4x12.jpg',
+    entries: djamminBassCabs.map((name) => [
+      'Djammincabs',
+      name,
+      'Synthetic bass cabinet IR',
+      'Designed bass cabinet curve',
+      ['Direct WAV pack'],
+      [48000],
+    ]),
   },
   {
     source: worshipSource,
@@ -289,6 +330,7 @@ const catalog = [
       samples: 1000,
       imageUrl: './images/fender-twin-reverb.jpg',
       source: fenderSource,
+      downloadUrl: fenderSource,
       license: 'Free download from Shift Line. Commercial redistribution requires permission.',
     }),
     ir({
@@ -305,6 +347,7 @@ const catalog = [
       samples: 1000,
       imageUrl: './images/fender-twin-reverb.jpg',
       source: fenderCabZoneSource,
+      downloadUrl: fenderCabZoneSource,
       license: 'Free download from Shift Line. Commercial redistribution requires permission.',
     }),
   ]),
@@ -324,6 +367,7 @@ const catalog = [
         samples: sampleRate === 44100 ? 1024 : 2048,
         imageUrl: './images/mesa-oversized-4x12.jpg',
         source: godsCabSource,
+        downloadUrl: godsCabSource,
         license: 'Free archive download. Verify redistribution terms before mirroring files publicly.',
       }),
     ),
@@ -343,8 +387,9 @@ const catalog = [
         sampleRate,
         samples: sampleRate === 44100 ? 1024 : 2048,
         imageUrl: './images/marshall-1960ax.jpg',
-        source: '#',
-        license: 'Fonte original ainda em revisao. Este item fica apenas como referencia ate a origem ser confirmada.',
+        source: jesterBrutalSource,
+        downloadUrl: jesterBrutalDownload,
+        license: 'Download direto oficial. O autor informa uso gratuito inclusive comercial; inclui WAV em 44.1 e 48 kHz.',
       }),
     ),
   ),
@@ -400,8 +445,9 @@ function expandSourcePack(pack) {
           samples: sampleRate === 44100 ? 1024 : 2048,
           imageUrl: pack.imageUrl,
           source: pack.source,
+          downloadUrl: pack.downloadUrl,
           license: pack.license,
-          instrument: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' ? 'Baixo' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Violao' : 'Guitarra',
+          instrument: brand === 'Ampeg' || brand === 'Aguilar' || brand === 'Eden' || brand === 'Trace Elliot' || (brand === 'Djammincabs' && cabinet.includes('bass')) ? 'Baixo' : brand === 'Taylor' || brand === 'Martin' || brand === 'McPherson' || brand === 'Guild' ? 'Violao' : 'Guitarra',
         }),
       ),
     ),
@@ -506,10 +552,13 @@ function render() {
 
 function card(item) {
   const [visualClass, visualLabel] = brandVisuals[item.brand] || ['brand-default', item.brand];
+  const actionUrl = item.downloadUrl || item.source;
+  const actionLabel = item.downloadUrl ? 'Download direto' : 'Fonte oficial';
+  const actionClass = item.downloadUrl ? 'direct-download' : '';
   const sourceAction =
     item.source === '#'
       ? '<span class="pending-source">Fonte em revisao</span>'
-      : `<a href="${item.source}" target="_blank" rel="noopener" data-download-id="${escapeHtml(item.id)}">Fonte oficial</a>`;
+      : `<a class="${actionClass}" href="${actionUrl}" target="_blank" rel="noopener" data-download-id="${escapeHtml(item.id)}">${actionLabel}</a>`;
   return `
     <article class="card">
       <div class="brand-art ${visualClass}" role="img" aria-label="${escapeHtml(`${item.brand} ${item.cabinet}`)}">

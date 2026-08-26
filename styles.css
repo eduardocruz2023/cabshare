@@ -356,6 +356,7 @@ select:focus {
 .brand-peavey { background: linear-gradient(135deg, #171717, #6d7a84); }
 .brand-engl { background: linear-gradient(135deg, #101010, #7d1414); }
 .brand-diezel { background: linear-gradient(135deg, #141414, #a16a2b); }
+.brand-djammin { background: linear-gradient(135deg, #202020, #d95136); }
 .brand-science { background: linear-gradient(135deg, #22272e, #7b7f72); }
 .brand-silvertone { background: linear-gradient(135deg, #c9c0b2, #2d3130); }
 .brand-supro { background: linear-gradient(135deg, #27415c, #d6c197); }
@@ -434,6 +435,10 @@ select:focus {
 
 .card a {
   background: var(--accent);
+}
+
+.card a.direct-download {
+  background: var(--green);
 }
 
 .pending-source {
