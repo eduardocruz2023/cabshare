@@ -289,13 +289,68 @@ select:focus {
   overflow: hidden;
 }
 
-.card img {
-  display: block;
+.brand-art {
+  position: relative;
+  display: grid;
+  place-items: center;
   width: 100%;
   height: 170px;
-  object-fit: cover;
-  background: #e3d8c7;
+  overflow: hidden;
+  background: #dfd6c7;
 }
+
+.brand-art::before,
+.brand-art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.brand-art::before {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px) 0 0 / 12px 12px,
+    linear-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px) 0 0 / 12px 12px;
+  opacity: 0.65;
+}
+
+.brand-art::after {
+  inset: auto 9% 22px;
+  height: 18px;
+  border-top: 2px solid rgba(255, 255, 255, 0.28);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.18);
+}
+
+.brand-art span {
+  position: relative;
+  z-index: 1;
+  padding: 8px 14px;
+  border: 2px solid currentColor;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.32);
+}
+
+.brand-fender { background: linear-gradient(135deg, #d6d1c3, #2f3432); }
+.brand-marshall { background: linear-gradient(135deg, #1d1a16, #c3ad79); }
+.brand-mesa { background: linear-gradient(135deg, #171717, #56534c); }
+.brand-orange { background: linear-gradient(135deg, #ef7e23, #5d2710); }
+.brand-vox { background: linear-gradient(135deg, #2b2117, #c7a05d); }
+.brand-hiwatt { background: linear-gradient(135deg, #f3f0e6, #1f1f1f); }
+.brand-celestion { background: linear-gradient(135deg, #244c72, #111827); }
+.brand-ampeg { background: linear-gradient(135deg, #111111, #254c3b); }
+.brand-aguilar { background: linear-gradient(135deg, #171717, #d6b35f); }
+.brand-eden { background: linear-gradient(135deg, #0b2d26, #a9c2a2); }
+.brand-trace { background: linear-gradient(135deg, #163f2a, #8fcf77); }
+.brand-peavey { background: linear-gradient(135deg, #171717, #6d7a84); }
+.brand-engl { background: linear-gradient(135deg, #101010, #7d1414); }
+.brand-diezel { background: linear-gradient(135deg, #141414, #a16a2b); }
+.brand-science { background: linear-gradient(135deg, #22272e, #7b7f72); }
+.brand-acoustic { background: linear-gradient(135deg, #8a552c, #e2bb7b); }
+.brand-default { background: linear-gradient(135deg, #2f3432, #8a8173); }
 
 .card-body {
   padding: 20px;

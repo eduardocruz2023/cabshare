@@ -9,6 +9,28 @@ const pandaSource = 'https://panda-sound.com/product/panda-cabs-free-pack/';
 const worshipSource = 'https://worshiptutorials.com/product/acoustic-ir-sample-pack/';
 const acousticIrSource = 'https://www.acousticir.ovh/';
 
+const brandVisuals = {
+  Aguilar: ['brand-aguilar', 'Aguilar'],
+  Ampeg: ['brand-ampeg', 'Ampeg'],
+  Celestion: ['brand-celestion', 'Celestion'],
+  Diezel: ['brand-diezel', 'Diezel'],
+  Eden: ['brand-eden', 'Eden'],
+  ENGL: ['brand-engl', 'ENGL'],
+  Fender: ['brand-fender', 'Fender'],
+  Guild: ['brand-acoustic', 'Guild'],
+  Hiwatt: ['brand-hiwatt', 'Hiwatt'],
+  Marshall: ['brand-marshall', 'Marshall'],
+  Martin: ['brand-acoustic', 'Martin'],
+  McPherson: ['brand-acoustic', 'McPherson'],
+  'Mesa Boogie': ['brand-mesa', 'Mesa Boogie'],
+  Orange: ['brand-orange', 'Orange'],
+  Peavey: ['brand-peavey', 'Peavey'],
+  'Science Amps': ['brand-science', 'Science'],
+  Taylor: ['brand-acoustic', 'Taylor'],
+  'Trace Elliot': ['brand-trace', 'Trace Elliot'],
+  Vox: ['brand-vox', 'Vox'],
+};
+
 const fenderNames = [
   ['01 Twin73 dome edge L19', 'Lomo 19A19', 'Clean body'],
   ['02 Twin73 dome edge e609', 'Sennheiser e906', 'Soft overdrive'],
@@ -320,9 +342,12 @@ function render() {
 }
 
 function card(item) {
+  const [visualClass, visualLabel] = brandVisuals[item.brand] || ['brand-default', item.brand];
   return `
     <article class="card">
-      <img src="${item.imageUrl}" alt="${escapeHtml(`${item.brand} ${item.cabinet}`)}" />
+      <div class="brand-art ${visualClass}" role="img" aria-label="${escapeHtml(`${item.brand} ${item.cabinet}`)}">
+        <span>${escapeHtml(visualLabel)}</span>
+      </div>
       <div class="card-body">
         <div class="card-top">
           <div>
