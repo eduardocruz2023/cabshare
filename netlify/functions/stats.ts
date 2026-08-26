@@ -1,5 +1,5 @@
 import { getStore } from "@netlify/blobs";
-import type { Config, Context } from "@netlify/functions";
+import type { Config } from "@netlify/functions";
 
 type Stats = {
   visits: number;
@@ -38,7 +38,7 @@ async function readStats() {
   return { store, stats: current };
 }
 
-export default async (req: Request, context: Context) => {
+export default async (req: Request) => {
   if (req.method === "GET") {
     const { stats } = await readStats();
     return json(stats);
@@ -63,7 +63,7 @@ export default async (req: Request, context: Context) => {
   }
 
   stats.updatedAt = new Date().toISOString();
-  context.waitUntil(store.setJSON("totals", stats));
+  await store.setJSON("totals", stats);
   return json(stats);
 };
 
