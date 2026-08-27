@@ -100,43 +100,28 @@
         </div>
       </section>
 
-      <section class="featured" aria-label="IRs em destaque">
+      <section class="request-panel" aria-label="Pedir novo IR">
         <div class="section-title">
-          <h2>IRs em destaque</h2>
-          <a href="#results">Ver todos <span aria-hidden="true">-&gt;</span></a>
+          <h2>Peca um IR</h2>
+          <p>Sentiu falta de alguma marca, amp, cab ou microfone? Envie o pedido e ele entra na fila de curadoria.</p>
         </div>
-        <div class="featured-grid">
-          <article class="featured-card">
-            <img src="./images/fender-twin-reverb.jpg" alt="Fender Twin Reverb" />
-            <div>
-              <h3>Fender Twin Clean</h3>
-              <p><span>Clean</span><span>Combo</span><span>2x12</span></p>
-              <small>SM57 - R121 - 44.1 kHz</small>
-              <em>Fender Twin Reverb</em>
-            </div>
-            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
-          </article>
-          <article class="featured-card">
-            <img src="./images/mesa-oversized-4x12.jpg" alt="Mesa Boogie Rectifier" />
-            <div>
-              <h3>Mesa Rectifier V30</h3>
-              <p><span>High gain</span><span>4x12</span><span>V30</span></p>
-              <small>SM57 - R121 - 48 kHz</small>
-              <em>Mesa Boogie Rectifier</em>
-            </div>
-            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
-          </article>
-          <article class="featured-card">
-            <img src="./images/marshall-1960ax.jpg" alt="Marshall 1960A" />
-            <div>
-              <h3>Greenback Crunch</h3>
-              <p><span>Crunch</span><span>4x12</span><span>G12M</span></p>
-              <small>SM57 - R121 - 44.1 kHz</small>
-              <em>Marshall 1960A</em>
-            </div>
-            <a href="#catalog">Ouvir</a><a href="#catalog">Download</a>
-          </article>
-        </div>
+        <form class="request-form" name="ir-request" method="POST" action="/pedido-recebido" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="ir-request" />
+          <p class="hidden-field"><label>Nao preencha <input name="bot-field" /></label></p>
+          <label>Seu nome<input name="name" autocomplete="name" placeholder="Como quer ser chamado?" /></label>
+          <label>Contato<input name="contact" autocomplete="email" placeholder="Email, Instagram ou WhatsApp" /></label>
+          <label>Marca<input name="brand" required placeholder="Fender, Mesa, Marshall, Ampeg..." /></label>
+          <label>Amp ou gabinete<input name="amp" required placeholder="Twin Reverb, Rectifier 4x12, SVT 8x10..." /></label>
+          <label>Preferencia<select name="sample_rate">
+            <option>Sem preferencia</option>
+            <option>44.1 kHz</option>
+            <option>48 kHz</option>
+            <option>96 kHz</option>
+            <option>Download direto</option>
+          </select></label>
+          <label class="request-notes">Detalhes<textarea name="details" rows="3" placeholder="Microfone, falante, estilo, link de referencia ou observacao..."></textarea></label>
+          <button class="button accent request-submit" type="submit">Enviar pedido <span aria-hidden="true">-&gt;</span></button>
+        </form>
       </section>
       <p class="status" id="status">Escolha um filtro para carregar os IRs.</p>
       <div id="results" class="results"></div>
