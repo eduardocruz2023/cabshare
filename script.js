@@ -225,7 +225,7 @@ const sourcePacks = [
     source: djammincabsSource,
     downloadUrl: djamminGuitarDownload,
     pack: 'Djammincabs 100 Free Guitar IR Cabs',
-    license: 'Pacote gratuito com 100 IRs de guitarra em WAV mono 48 kHz / 24-bit PCM, conforme a pagina do autor.',
+    license: 'Pacote gratuito com 100 IRs de guitarra em WAV mono 48 kHz / 24-bit PCM, conforme a página do autor.',
     imageUrl: './images/marshall-1960ax.jpg',
     entries: djamminGuitarCabs.map((name) => [
       'Djammincabs',
@@ -240,7 +240,7 @@ const sourcePacks = [
     source: djammincabsSource,
     downloadUrl: djamminBassDownload,
     pack: 'Djammincabs 100 Free Bass IR Cabs',
-    license: 'Pacote gratuito com 100 IRs de baixo em WAV mono 48 kHz / 24-bit PCM, conforme a pagina do autor.',
+    license: 'Pacote gratuito com 100 IRs de baixo em WAV mono 48 kHz / 24-bit PCM, conforme a página do autor.',
     imageUrl: './images/mesa-oversized-4x12.jpg',
     entries: djamminBassCabs.map((name) => [
       'Djammincabs',
@@ -480,8 +480,8 @@ const catalog = [
       imageUrl: './images/fender-twin-reverb.jpg',
       source: acousticIrSource,
       downloadUrl: `https://drive.google.com/uc?export=download&id=${driveId}`,
-      license: 'Arquivo da base gratuita AcousticIR. Confira a pagina-fonte para detalhes de autoria, instrumento e pickup.',
-      instrument: 'Violao',
+      license: 'Arquivo da base gratuita AcousticIR. Confira a página-fonte para detalhes de autoria, instrumento e pickup.',
+      instrument: 'Violão',
     }),
   ),
   ...sourcePacks.flatMap((pack) => expandSourcePack(pack)),
@@ -555,7 +555,7 @@ function expandSourcePack(pack) {
           source: pack.source,
           downloadUrl: pack.downloadUrl,
           license: pack.license,
-          instrument: bassBrands.includes(brand) || (brand === 'Djammincabs' && cabinet.includes('bass')) ? 'Baixo' : acousticBrands.includes(brand) ? 'Violao' : 'Guitarra',
+          instrument: bassBrands.includes(brand) || (brand === 'Djammincabs' && cabinet.includes('bass')) ? 'Baixo' : acousticBrands.includes(brand) ? 'Violão' : 'Guitarra',
         }),
       ),
     ),
@@ -681,7 +681,7 @@ function card(item) {
   const actionClass = item.downloadUrl ? 'direct-download' : '';
   const sourceAction =
     item.source === '#'
-      ? '<span class="pending-source">Fonte em revisao</span>'
+      ? '<span class="pending-source">Fonte em revisão</span>'
       : `<a class="${actionClass}" href="${actionUrl}" target="_blank" rel="noopener" data-download-id="${escapeHtml(item.id)}">${actionLabel}</a>`;
   return `
     <article class="card">
@@ -714,12 +714,12 @@ function card(item) {
 
 function accessType(item) {
   if (item.downloadUrl) return 'Download direto';
-  if (item.source === '#') return 'Fonte em revisao';
+  if (item.source === '#') return 'Fonte em revisão';
   return 'Fonte oficial';
 }
 
 function emptyState(text = 'Escolha um filtro para ver os IRs.') {
-  return `<div class="empty"><strong>${escapeHtml(text)}</strong><p>O catalogo so renderiza resultados apos uma selecao para manter a pagina leve.</p></div>`;
+  return `<div class="empty"><strong>${escapeHtml(text)}</strong><p>O catálogo só renderiza resultados após uma seleção para manter a página leve.</p></div>`;
 }
 
 async function initStats() {
