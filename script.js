@@ -55,6 +55,11 @@ const brandVisuals = {
   'Trace Elliot': ['brand-trace', 'Trace Elliot'],
   Vox: ['brand-vox', 'Vox'],
   Yamaha: ['brand-acoustic', 'Yamaha'],
+  Eastman: ['brand-acoustic', 'Eastman'],
+  Ovation: ['brand-acoustic', 'Ovation'],
+  McIlroy: ['brand-acoustic', 'McIlroy'],
+  Rainsong: ['brand-acoustic', 'Rainsong'],
+  'BC Rich': ['brand-acoustic', 'BC Rich'],
 };
 
 const fenderNames = [
@@ -89,7 +94,7 @@ const djamminGuitarCabs = Array.from({ length: 100 }, (_, index) => `Guitar Cab 
 const djamminBassCabs = Array.from({ length: 100 }, (_, index) => `Bass Cab ${String(index + 1).padStart(3, '0')}`);
 
 const bassBrands = ['Ampeg', 'Aguilar', 'Eden', 'Trace Elliot', 'Markbass', 'Hartke', 'Gallien-Krueger'];
-const acousticBrands = ['Taylor', 'Martin', 'McPherson', 'Guild', 'Yamaha', 'Gibson'];
+const acousticBrands = ['Taylor', 'Martin', 'McPherson', 'Guild', 'Yamaha', 'Gibson', 'Eastman', 'Ovation', 'McIlroy', 'Rainsong', 'BC Rich'];
 const shiftBassMics = [
   'RE20 center',
   'RE20 edge',
@@ -136,6 +141,29 @@ const shiftBassDetailedEntries = [
   ['Eden', 'Metro Combo 2x10', 'Combo bass 2x10', '10 inch bass drivers'],
   ['Trace Elliot', 'Twin Valve 4x10', 'Tube bass 4x10', '10 inch bass drivers'],
 ].map(([brand, ampFamily, cabinet, speaker]) => [brand, ampFamily, cabinet, speaker, shiftBassMics, [48000]]);
+
+const acousticIrDirectEntries = [
+  ['Martin', 'HD-28 2014 TA Amulet', 'Dreadnought acoustic body', 'Trance Audio Amulet SBT', '25.4 inch scale / Sitka spruce / rosewood', '1PHuxTsa2P4i--wX1aEqsNDvWLi_JTSG7'],
+  ['Eastman', 'E6OM 2019 DIY Pickup v5', '000/OM acoustic body', 'DIY SBT pickup', 'Short scale / Sitka spruce / mahogany', '1NE3rue4ELuCQPWQZF_O13CFmH5MNMlc1'],
+  ['Martin', 'D-18 2012 Lyric', 'Dreadnought acoustic body', 'LR Baggs Lyric', '25.4 inch scale / Sitka spruce / mahogany', '1oUpXB19YSp_XrZ9nJBTNIvxv2VqxU440'],
+  ['Yamaha', 'LL16 UST', 'Dreadnought acoustic body', 'Yamaha UST pickup', 'Jumbo type / spruce / rosewood', '1o02kUA2UlOMY4KFol2mcdV7CCG4pqfzL'],
+  ['Ovation', 'Celebrity CE44', 'Mid-depth acoustic body', 'Ovation UST pickup', '25.4 inch scale / spruce top', '1pFVD1hS7qaXyiB7_000tgqWiYrXvEJhb'],
+  ['Martin', '000-10E Fishman MX-T', '000/OM acoustic body', 'Fishman MX-T UST', 'Short scale / sapele body', '1BTvnMZjhEWg6kaMUCqWAaKkAT2eMI9uG'],
+  ['Martin', '000X1AE Sonitone', '000/OM acoustic body', 'Fishman Sonitone UST', 'Short scale / Sitka spruce / laminate', '1XJl3KEXYKo6U96RPN8uKi5yz0EagDGhh'],
+  ['McIlroy', 'A25c HFN', 'Cedar-top acoustic body', 'Schatten HFN SBT', '25.4 inch scale / cedar / walnut', '16pQAmETxU4JmHjgxY4Y3KISuVTMAJIB8'],
+  ['Martin', '000-18 BGM', '000/OM acoustic body', 'BGM Elevation SBT', 'Short scale / Sitka spruce / mahogany', '1-QpwGZfxxj6IJ8VnjGB1CzIU0VWrCsox'],
+  ['Martin', 'HD-28 pre-2018 HFN', 'Dreadnought acoustic body', 'Schatten HFN SBT', '25.4 inch scale / Sitka spruce / rosewood', '1Nuxc6jZucIuo-xHY8Xhj8ngkCCgzMyT5'],
+  ['Martin', 'Custom Shop HD-28V K&K', 'Dreadnought acoustic body', 'K&K passive SBT', '25.4 inch scale / Adirondack spruce / rosewood', '1RPsXY5oqN9Xs-Xy0WmzYXGA_OMQrG6SL'],
+  ['Martin', 'D-28 Marquis K&K', 'Dreadnought acoustic body', 'K&K passive SBT', '25.4 inch scale / Adirondack spruce / rosewood', '11ZMzEkXuSNf0Zj0sJvZAB_kiXAIbyrCb'],
+  ['Martin', 'CS D-28 GRW PUTW #54', 'Dreadnought acoustic body', 'Pickup-the-world #54 SBT', '25.4 inch scale / Adirondack spruce / Guatemalan rosewood', '1PRwpSpMGDswGBv8VH0jTsa24PhqNvLSX'],
+  ['Martin', 'Custom Shop D-42 K&K', 'Dreadnought acoustic body', 'K&K Pure Mini SBT', '25.34 inch scale / Adirondack spruce / Madagascar rosewood', '1d8J2b2Loa20bn9CdQFD3XMKNWtHAQ-pS'],
+  ['Taylor', 'GS Mini Koa ES2', 'Small-body acoustic body', 'Taylor ES2', 'Short scale / GS Mini koa', '1XHQxoAC31ZRH7H2ZCQwyJajvEog9qWGY'],
+  ['Martin', 'D-35 Seth Avett', 'Dreadnought acoustic body', 'Fishman Gold Plus Natural UST', '25.4 inch scale / European spruce / rosewood', '16ZzOLB1ZGlIGtHoikBYPksRIh-60fMhR'],
+  ['Martin', 'D-35E Retro Aura', 'Dreadnought acoustic body', 'Fishman Aura pickup', '25.4 inch scale / D-35E Retro', '17r86FvrSaH3JCGSC19_P68-QVDvySyAO'],
+  ['Martin', 'OM-28 Fishman Matrix', '000/OM acoustic body', 'Fishman Matrix UST', '25.4 inch scale / Sitka spruce / rosewood', '1mJE1GPDkm1sqnCCxu3IW3gl6q7V-R2bq'],
+  ['Rainsong', 'CH-PA1100NSG HFN', 'Concert carbon-fiber acoustic body', 'Schatten HFN passive SBT', 'Carbon fiber top and body', '1Awk2gNMWfp5NMFl-ozdBfpnaJRabKWlP'],
+  ['Rainsong', 'H-DR1100N2 HFN', 'Dreadnought carbon-fiber acoustic body', 'Schatten HFN passive SBT', 'Carbon fiber top and body', '1y5sl-GQBCmIT-YYyOxRf-4O3SrX-y5o6'],
+];
 
 const sourcePacks = [
   {
@@ -435,6 +463,26 @@ const catalog = [
         license: 'Download direto oficial. O autor informa uso gratuito inclusive comercial; inclui WAV em 44.1 e 48 kHz.',
       }),
     ),
+  ),
+  ...acousticIrDirectEntries.map(([brand, ampFamily, cabinet, pickup, tone, driveId], index) =>
+    ir({
+      id: `acousticir-direct-${index}-${slug(brand)}-${slug(ampFamily)}`,
+      name: `${ampFamily} IR`,
+      pack: 'AcousticIR Direct Community Files',
+      brand,
+      ampFamily,
+      cabinet,
+      speaker: 'Acoustic guitar body resonance',
+      mic: pickup,
+      tone,
+      sampleRate: 48000,
+      samples: 2048,
+      imageUrl: './images/fender-twin-reverb.jpg',
+      source: acousticIrSource,
+      downloadUrl: `https://drive.google.com/uc?export=download&id=${driveId}`,
+      license: 'Arquivo da base gratuita AcousticIR. Confira a pagina-fonte para detalhes de autoria, instrumento e pickup.',
+      instrument: 'Violao',
+    }),
   ),
   ...sourcePacks.flatMap((pack) => expandSourcePack(pack)),
 ];
