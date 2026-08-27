@@ -502,6 +502,7 @@ const els = {
   status: document.querySelector('#status'),
   results: document.querySelector('#results'),
   filters: document.querySelector('#filters'),
+  requestForm: document.querySelector('.request-form'),
   clearFilters: document.querySelector('#clearFilters'),
 };
 
@@ -516,6 +517,7 @@ els.filters.addEventListener('submit', (event) => {
 els.filters.addEventListener('input', render);
 els.filters.addEventListener('change', render);
 els.clearFilters.addEventListener('click', clearFilters);
+els.requestForm.addEventListener('submit', handleRequestSubmit);
 document.querySelectorAll('[data-chip]').forEach((button) => {
   button.addEventListener('click', () => {
     els.q.value = button.dataset.chip;
@@ -738,6 +740,23 @@ async function handleDownloadClick(event) {
   if (!link) return;
   const stats = await sendStats({ event: 'download', irId: link.dataset.downloadId });
   updateStats(stats);
+}
+
+function handleRequestSubmit(event) {
+  event.preventDefault();
+  const formData = new FormData(els.requestForm);
+  const lines = [
+    'Pedido de IR pelo CabShare',
+    '',
+    `Nome: ${formData.get('name') || 'Não informado'}`,
+    `Contato: ${formData.get('contact') || 'Não informado'}`,
+    `Marca: ${formData.get('brand') || 'Não informado'}`,
+    `Amp ou gabinete: ${formData.get('amp') || 'Não informado'}`,
+    `Preferência: ${formData.get('sample_rate') || 'Sem preferência'}`,
+    `Detalhes: ${formData.get('details') || 'Sem detalhes'}`,
+  ];
+  const message = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/5591983684949?text=${message}`, '_blank', 'noopener');
 }
 
 async function sendStats(payload) {
